@@ -51,7 +51,8 @@ Use the higher-order function called getYears to do the following:
 3. Return an array called years containing all of the years in the getFinals data set*/
 
 function getYears(array, getFinals) {
-  const years = array.map((item) => {
+  const finalsYears = getFinals(array);
+  const years = finalsYears.map((item) => {
     return item.Year;
   });
   return years;
@@ -88,10 +89,19 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* array, getFinalscb, getYearscb, getWinnerscb*/) {
-  /* code here */
-  //   use map - i would map over one array and grab each item and then I would use the index to grab the item in the other array
+function getWinnersByYear(array, getFinals, getYears, getWinners) {
+  const finals = getFinals(array);
+  const years = getYears(finals, getFinals);
+  console.log("#1", getWinners);
+  const winners = getWinners(finals, getFinals);
+  const winnersByYear = finals.map((item, index) => {
+    return `In ${years[index]}, ${winners[index]} won the world cup!`;
+  });
+
+  return winnersByYear;
 }
+
+console.log(getWinnersByYear(fifaData, getFinals, getYears, getWinners));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
@@ -103,14 +113,16 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* getFinals*/) {
-  /* code here */
-  //   reduce to add up all the goals of the home and away team
-  // then I would divide that number by the length of the array
-  // then round two decimal places * hint look up .toFixed
+function getAverageGoals(getFinals, data) {
+  //   const finals = getFinals(data);
+  //   finals.reduce(accu, )
 }
+/* code here */
+//   reduce to add up all the goals of the home and away team
+// then I would divide that number by the length of the array
+// then round two decimal places * hint look up .toFixed
 
-getAverageGoals(getFinals(fifaData));
+// getAverageGoals(getFinals, fifaData);
 
 /// 🥅 STRETCH 🥅 ///
 
