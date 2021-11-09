@@ -113,16 +113,12 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(getFinals, data) {
-  //   const finals = getFinals(data);
-  //   finals.reduce(accu, )
+function getAverageGoals(getFinalscb) {
+  const sumGoals = getFinalscb.reduce(function (accu, item) {
+    return accu + item["Home Team Goals"] + item["Away Team Goals"];
+  }, 0);
+  return (sumGoals / getFinalscb.length).toFixed(2);
 }
-/* code here */
-//   reduce to add up all the goals of the home and away team
-// then I would divide that number by the length of the array
-// then round two decimal places * hint look up .toFixed
-
-// getAverageGoals(getFinals, fifaData);
 
 /// 🥅 STRETCH 🥅 ///
 
