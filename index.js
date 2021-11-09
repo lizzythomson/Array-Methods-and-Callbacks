@@ -65,8 +65,16 @@ Use the higher-order function getWinners to do the following:
 4. Returns the names of all winning countries in an array called `winners` */
 
 function getWinners(array, getFinals) {
-  //   map
-  //   conditional if home team goals > away team goals then we wnat the home team name else we want the away team name
+  const finals = getFinals(array);
+  const winners = [];
+  finals.forEach(function (item, index) {
+    if (item["Home Team Goals"] > item["Away Team Goals"]) {
+      winners.push(finals[index]["Home Team Name"]);
+    } else {
+      winners.push(finals[index]["Away Team Name"]);
+    }
+  });
+  return winners;
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
